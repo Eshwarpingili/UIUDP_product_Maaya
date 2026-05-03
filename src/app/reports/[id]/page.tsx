@@ -9,6 +9,10 @@ import { ConfirmDialog } from "@/components/ConfirmDialog"
 import { Toast } from "@/components/Toast"
 import { useState } from "react"
 
+type Props = {
+  params: { id: string }
+}
+
 export default function ReportDetail({ params }: Props) {
   const router = useRouter()
   const report = useAppStore((state) =>
