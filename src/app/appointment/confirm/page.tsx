@@ -4,6 +4,7 @@ import { useSearchParams } from "next/navigation"
 import { format, parseISO } from "date-fns"
 import { Card } from "@/components/Card"
 import { Button } from "@/components/ui/button"
+import { Suspense } from "react"
 
 function QRPlaceholder() {
   return (
@@ -20,7 +21,7 @@ function QRPlaceholder() {
   )
 }
 
-export default function AppointmentConfirm() {
+function AppointmentConfirmContent() {
   const params = useSearchParams()
   const hospital = params.get("hospital") ?? "Sunrise Women Care"
   const doctor = params.get("doctor") ?? "Dr. Mira Nair"
@@ -54,5 +55,13 @@ export default function AppointmentConfirm() {
         <Button>Share</Button>
       </div>
     </div>
+  )
+}
+
+export default function AppointmentConfirm() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <AppointmentConfirmContent />
+    </Suspense>
   )
 }
