@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { Trash2, Pill, Leaf } from "lucide-react"
+import { Trash2, Pill, Leaf, ChevronLeft } from "lucide-react"
 import { useAppStore } from "@/store/useAppStore"
 import { Card } from "@/components/Card"
 import { ConfirmDialog } from "@/components/ConfirmDialog"
@@ -28,15 +28,22 @@ export default function ReportDetail({ params }: Props) {
         <Card title="Report not found" subtitle="We could not locate this report.">
           <p className="text-sm text-black/70">Try returning to the reports list.</p>
         </Card>
-        <Link href="/reports" className="text-sm font-semibold text-highlight">
+        <Button variant="ghost" onClick={() => router.back()}>
           Back to reports
-        </Link>
+        </Button>
       </div>
     )
   }
 
   return (
     <div className="space-y-6 fade-slide">
+      <div className="flex items-center gap-2 mb-4">
+        <button onClick={() => router.back()} className="pressable p-2 bg-white rounded-full shadow-soft">
+          <ChevronLeft size={20} />
+        </button>
+        <h1 className="text-xl font-bold text-text">Report Detail</h1>
+      </div>
+
       <Card title={report.title} subtitle={report.summary}>
         <div className="flex items-center justify-between">
           <div className="text-xs text-black/60">Swipe for more images</div>

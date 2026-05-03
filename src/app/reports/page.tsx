@@ -20,6 +20,11 @@ export default function ReportsPage() {
           <Button>Upload</Button>
         </Link>
       </div>
+
+      <div className="w-full">
+        <img src="/images/medical-report.png" alt="Medical Report" className="w-full rounded-xl object-cover mb-4" />
+      </div>
+
       <Card title="AI summary" subtitle="Highlights from your latest reports." className="card-highlight">
         <p className="text-sm text-black/70">
           Recent scans are stable. Iron levels need attention and hydration goals were missed twice this week.

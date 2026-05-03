@@ -7,6 +7,7 @@ import { Card } from "@/components/Card"
 import { Dropdown } from "@/components/Dropdown"
 import { Button } from "@/components/ui/button"
 import { CalendarModal } from "@/components/CalendarModal"
+import { ChevronLeft } from "lucide-react"
 
 const hospitalOptions = [
   { label: "Sunrise Women Care", value: "Sunrise Women Care" },
@@ -40,6 +41,13 @@ export default function AppointmentPage() {
 
   return (
     <div className="space-y-6 fade-slide">
+      <div className="flex items-center gap-2 mb-4">
+        <button onClick={() => router.back()} className="pressable p-2 bg-white rounded-full shadow-soft">
+          <ChevronLeft size={20} />
+        </button>
+        <h1 className="text-xl font-bold text-text">Book Appointment</h1>
+      </div>
+
       <div className="bg-white p-5 rounded-2xl shadow-card">
         <div className="flex justify-between items-center relative mb-2">
           {/* Progress Path */}

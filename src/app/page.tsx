@@ -7,6 +7,9 @@ export default function WelcomePage() {
     <div className="space-y-6 fade-slide">
       <div className="relative overflow-hidden rounded-2xl bg-white p-6 shadow-card">
         <div className="absolute app-blob one" />
+        <div className="relative z-10 flex flex-col items-center">
+          <img src="/images/app-hero.png" alt="Hero" className="w-full rounded-xl object-cover mb-4" />
+        </div>
         <h1 className="relative z-10 text-2xl font-semibold text-text">Welcome to Maaya Care</h1>
         <p className="relative z-10 mt-2 text-sm text-black/70">
           A pregnancy companion that keeps you informed, calm, and connected.

@@ -11,6 +11,7 @@ export default function RolePage() {
 
   return (
     <div className="space-y-6 fade-slide">
+      <img src="/images/onboarding.png" alt="Onboarding" className="w-full rounded-xl object-cover mb-4" />
       <div>
         <h2 className="text-xl font-semibold">Select your role</h2>
         <p className="text-sm text-black/60">

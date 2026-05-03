@@ -100,7 +100,7 @@ export default function HomePage() {
                 />
               </svg>
               <div className="z-10 bg-white/50 backdrop-blur-sm p-2 rounded-full w-14 h-14 flex items-center justify-center shadow-sm">
-                <BabyGrowthIllustration />
+                <img src="/images/baby-size-illustration.png" alt="Baby Size" className="w-full rounded-xl object-cover" />
               </div>
             </div>
             <div className="mt-2 text-[10px] font-bold text-highlight bg-highlight/10 px-2 py-0.5 rounded-full">

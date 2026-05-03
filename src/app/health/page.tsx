@@ -3,10 +3,12 @@
 import { Card } from "@/components/Card"
 import { useAppStore } from "@/store/useAppStore"
 import { LineChart, Line, ResponsiveContainer, Tooltip } from "recharts"
-import { HeartPulse, Footprints, Wind, Activity } from "lucide-react"
+import { HeartPulse, Footprints, Wind, Activity, ChevronLeft } from "lucide-react"
+import { useRouter } from "next/navigation"
 
 export default function HealthPage() {
   const healthData = useAppStore((state) => state.healthData)
+  const router = useRouter()
 
   const iconMap = {
     "Blood Pressure": Activity,
@@ -17,6 +19,15 @@ export default function HealthPage() {
 
   return (
     <div className="space-y-6 fade-slide">
+      <div className="flex items-center gap-2 mb-4">
+        <button onClick={() => router.back()} className="pressable p-2 bg-white rounded-full shadow-soft">
+          <ChevronLeft size={20} />
+        </button>
+        <h1 className="text-xl font-bold text-text">Health</h1>
+      </div>
+
+      <img src="/images/health-dashboard.png" alt="Health Dashboard" className="w-full rounded-xl object-cover mb-4" />
+
       <Card title="AI health summary" subtitle="Personalized insight">
         <p className="text-sm text-black/70">
           Overall vitals are stable. Activity is improving, and heart rate is steady. Keep up hydration and

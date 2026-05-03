@@ -16,8 +16,11 @@ import {
 import { Card } from "@/components/Card"
 import { useAppStore } from "@/store/useAppStore"
 import { Button } from "@/components/ui/button"
+import { ChevronLeft } from "lucide-react"
+import { useRouter } from "next/navigation"
 
 export default function CalendarPage() {
+  const router = useRouter()
   const [month, setMonth] = useState(new Date())
   const { appointments, pregnancyData } = useAppStore()
 
@@ -48,6 +51,15 @@ export default function CalendarPage() {
 
   return (
     <div className="space-y-6 fade-slide">
+      <div className="flex items-center gap-2 mb-4">
+        <button onClick={() => router.back()} className="pressable p-2 bg-white rounded-full shadow-soft">
+          <ChevronLeft size={20} />
+        </button>
+        <h1 className="text-xl font-bold text-text">Calendar</h1>
+      </div>
+
+      <img src="/images/Calendar-illustration.png" alt="Calendar" className="w-full rounded-xl object-cover mb-4" />
+
       <Card title="Calendar" subtitle="Appointments and milestones.">
         <div className="flex items-center justify-between">
           <Button variant="ghost" onClick={() => setMonth(addMonths(month, -1))}>

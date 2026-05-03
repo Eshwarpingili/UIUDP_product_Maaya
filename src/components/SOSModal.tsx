@@ -12,8 +12,8 @@ export function SOSModal() {
 
   return (
     <div className="fixed inset-0 z-50 bg-black/40 p-4">
-      <div className="bottom-sheet mx-auto flex h-[85%] max-w-md flex-col rounded-2xl bg-white p-6 shadow-soft">
-        <div className="flex items-center justify-between">
+      <div className="bottom-sheet mx-auto flex h-[85%] max-w-md flex-col rounded-2xl bg-white p-6 shadow-soft overflow-x-hidden">
+        <div className="flex items-center justify-between mb-4">
           <div>
             <div className="text-lg font-semibold text-text">SOS Assistance</div>
             <div className="text-sm text-black/60">
@@ -24,6 +24,9 @@ export function SOSModal() {
             <X size={18} />
           </Button>
         </div>
+
+        <img src="/images/sos-emergency.png" alt="Emergency" className="w-full rounded-xl object-cover mb-4" />
+
         <div className="mt-6 space-y-3">
           <Button className="w-full justify-start" variant="primary">
             <PhoneCall size={18} /> Call Emergency

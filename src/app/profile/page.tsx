@@ -3,7 +3,7 @@
 import { Card } from "@/components/Card"
 import { Switch } from "@/components/ui/switch"
 import { useState } from "react"
-import { Moon, ShieldCheck, Share2, Link2, LogOut, Trash2, Edit2 } from "lucide-react"
+import { Moon, ShieldCheck, Share2, Link2, LogOut, Trash2, Edit2, ChevronLeft } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { useAppStore } from "@/store/useAppStore"
 import { ConfirmDialog } from "@/components/ConfirmDialog"
@@ -36,7 +36,16 @@ export default function ProfilePage() {
   }
 
   return (
-    <div className="space-y-6 fade-slide">
+    <div className="space-y-6 fade-slide pb-24">
+      <div className="flex items-center gap-2 mb-4">
+        <button onClick={() => router.back()} className="pressable p-2 bg-white rounded-full shadow-soft">
+          <ChevronLeft size={20} />
+        </button>
+        <h1 className="text-xl font-bold text-text">Profile</h1>
+      </div>
+
+      <img src="/images/Profile-avatar.png" alt="Profile" className="w-full rounded-xl object-cover mb-4" />
+
       {/* Profile Header Block */}
       <div className="flex flex-col items-center justify-center py-6 text-center relative overflow-hidden rounded-2xl bg-white shadow-card card-gradient">
         <div className="absolute top-4 right-4">
@@ -45,8 +54,8 @@ export default function ProfilePage() {
           </button>
         </div>
         <div className="relative mb-4 mt-2">
-          <div className="h-24 w-24 rounded-full overflow-hidden border-4 border-white shadow-soft bg-highlight/20 flex items-center justify-center text-highlight font-bold text-3xl">
-            {pregnancyData.name.charAt(0)}
+          <div className="h-24 w-24 rounded-full overflow-hidden border-4 border-white shadow-soft">
+            <img src="/images/Profile-avatar.png" alt="Avatar" className="w-full h-full object-cover" />
           </div>
           <div className="absolute right-1 bottom-1 h-5 w-5 rounded-full border-2 border-white bg-emerald-400"></div>
         </div>
