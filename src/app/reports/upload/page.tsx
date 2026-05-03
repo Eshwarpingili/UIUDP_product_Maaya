@@ -20,13 +20,16 @@ export default function UploadReport() {
             <div className="text-sm font-semibold">Camera preview</div>
             <p className="mt-1 text-xs text-black/60">Camera is simulated in this demo.</p>
           </div>
-          <Input
-            type="file"
-            onChange={(event) => {
-              const file = event.target.files?.[0]
-              setFileName(file?.name ?? null)
-            }}
-          />
+          <div className="w-full overflow-hidden">
+            <Input
+              type="file"
+              className="w-full text-ellipsis"
+              onChange={(event) => {
+                const file = event.target.files?.[0]
+                setFileName(file?.name ?? null)
+              }}
+            />
+          </div>
           {fileName && (
             <div className="text-xs text-black/60">Selected file: {fileName}</div>
           )}

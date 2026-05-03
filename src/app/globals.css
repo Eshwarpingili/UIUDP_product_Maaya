@@ -14,7 +14,6 @@ body {
 
 .page-container {
   min-height: 100vh;
-  padding-bottom: 120px;
   position: relative;
   overflow-x: hidden;
 }
@@ -22,7 +21,7 @@ body {
 .page-content {
   margin: 0 auto;
   max-width: 24rem;
-  padding: 18px;
+  padding: 1rem;
 }
 
 .section-title {
@@ -31,7 +30,7 @@ body {
 }
 
 .floating-card {
-  background: linear-gradient(140deg, rgba(253, 230, 138, 0.35), rgba(167, 139, 250, 0.15));
+  background: linear-gradient(140deg, rgba(94, 234, 212, 0.35), rgba(167, 139, 250, 0.15));
 }
 
 .pressable {
@@ -39,7 +38,7 @@ body {
 }
 
 .pressable:active {
-  transform: scale(0.98);
+  transform: scale(0.95);
 }
 
 .card-gradient {
@@ -47,14 +46,14 @@ body {
 }
 
 .card-highlight {
-  background: linear-gradient(145deg, rgba(253, 230, 138, 0.7), rgba(165, 180, 252, 0.25));
+  background: linear-gradient(145deg, rgba(167, 139, 250, 0.7), rgba(165, 180, 252, 0.25));
 }
 
 .app-blob {
   position: absolute;
   border-radius: 999px;
-  filter: blur(0px);
-  opacity: 0.6;
+  filter: blur(40px);
+  opacity: 0.5;
   pointer-events: none;
   z-index: 0;
 }
@@ -62,17 +61,17 @@ body {
 .app-blob.one {
   width: 260px;
   height: 260px;
-  top: -120px;
-  right: -80px;
-  background: radial-gradient(circle at 30% 30%, rgba(253, 230, 138, 0.9), rgba(167, 139, 250, 0.4));
+  top: -60px;
+  right: -60px;
+  background: rgba(167, 139, 250, 0.4);
 }
 
 .app-blob.two {
   width: 220px;
   height: 220px;
-  bottom: 120px;
-  left: -90px;
-  background: radial-gradient(circle at 60% 40%, rgba(94, 234, 212, 0.7), rgba(165, 180, 252, 0.35));
+  bottom: 0px;
+  left: -40px;
+  background: rgba(94, 234, 212, 0.35);
 }
 
 .fade-slide {

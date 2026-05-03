@@ -44,8 +44,12 @@ export default function HealthPage() {
                     {metric.value} {metric.unit}
                   </div>
                 </div>
-                <div className="flex h-16 w-16 items-center justify-center rounded-full border-4 border-highlight/30">
-                  <div className="text-sm font-semibold text-highlight">{progress}%</div>
+                <div className="relative flex h-14 w-14 items-center justify-center">
+                  <svg className="absolute inset-0 h-full w-full -rotate-90 transform">
+                    <circle cx="28" cy="28" r="24" stroke="currentColor" strokeWidth="4" fill="transparent" className="text-black/5" />
+                    <circle cx="28" cy="28" r="24" stroke="currentColor" strokeWidth="4" fill="transparent" strokeDasharray={2 * Math.PI * 24} strokeDashoffset={(2 * Math.PI * 24) - (progress / 100) * (2 * Math.PI * 24)} strokeLinecap="round" className="text-highlight transition-all duration-1000 ease-out" />
+                  </svg>
+                  <div className="text-[10px] font-semibold text-text">{progress}%</div>
                 </div>
               </div>
               <div className="mt-3 h-24">

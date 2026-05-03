@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Send, X } from "lucide-react"
+import { Send, X, BotMessageSquare } from "lucide-react"
 import { Dialog, DialogContent } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -64,17 +64,17 @@ export function Chatbot() {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="pressable fixed bottom-24 right-5 z-30 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-highlight to-accent-200 shadow-soft"
+        className="pressable fixed bottom-24 right-5 z-30 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-highlight to-accent-200 shadow-soft text-white"
         aria-label="Open Maaya Chat"
       >
-        <img src="/maaya_logo.svg" alt="Maaya" width={28} height={28} />
+        <BotMessageSquare size={28} />
       </button>
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent open={open} className="bottom-sheet max-w-md">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-highlight/20">
-                <img src="/maaya_logo.svg" alt="Maaya" width={24} height={24} />
+              <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-highlight/20 text-highlight">
+                <BotMessageSquare size={24} />
               </div>
               <div>
                 <div className="text-base font-semibold">Maaya</div>
@@ -91,18 +91,18 @@ export function Chatbot() {
                 key={message.id}
                 className={
                   message.role === "user"
-                    ? "ml-auto w-fit max-w-[80%] rounded-2xl bg-gradient-to-r from-highlight to-accent-200 px-3 py-2 text-sm text-white"
-                    : "w-fit max-w-[80%] rounded-2xl bg-white px-3 py-2 text-sm text-text shadow"
+                    ? "ml-auto w-fit max-w-[80%] rounded-2xl bg-gradient-to-r from-highlight to-accent-200 px-3 py-2 text-sm text-white shadow-soft"
+                    : "w-fit max-w-[80%] rounded-2xl bg-white px-3 py-2 text-sm text-text shadow-sm"
                 }
               >
                 {message.text}
               </div>
             ))}
             {typing && (
-              <div className="flex w-fit items-center gap-1 rounded-2xl bg-white px-3 py-2 shadow">
-                <span className="typing-dot" />
-                <span className="typing-dot" />
-                <span className="typing-dot" />
+              <div className="flex w-fit items-center gap-1 rounded-2xl bg-white px-3 py-2 shadow-sm">
+                <span className="typing-dot bg-black/40 w-1.5 h-1.5 rounded-full inline-block animate-pulse" />
+                <span className="typing-dot bg-black/40 w-1.5 h-1.5 rounded-full inline-block animate-pulse animation-delay-200" />
+                <span className="typing-dot bg-black/40 w-1.5 h-1.5 rounded-full inline-block animate-pulse animation-delay-400" />
               </div>
             )}
           </div>
@@ -111,6 +111,7 @@ export function Chatbot() {
               placeholder="Type your message"
               value={input}
               onChange={(event) => setInput(event.target.value)}
+              onKeyDown={(e) => e.key === 'Enter' && sendMessage()}
             />
             <Button onClick={sendMessage}>
               <Send size={16} />

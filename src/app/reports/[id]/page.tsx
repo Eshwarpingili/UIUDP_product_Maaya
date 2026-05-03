@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 import { Trash2, Pill, Leaf } from "lucide-react"
 import { useAppStore } from "@/store/useAppStore"
 import { Card } from "@/components/Card"
@@ -8,11 +9,8 @@ import { ConfirmDialog } from "@/components/ConfirmDialog"
 import { Toast } from "@/components/Toast"
 import { useState } from "react"
 
-type Props = {
-  params: { id: string }
-}
-
 export default function ReportDetail({ params }: Props) {
+  const router = useRouter()
   const report = useAppStore((state) =>
     state.reports.find((item) => item.id === params.id)
   )
@@ -94,7 +92,10 @@ export default function ReportDetail({ params }: Props) {
           deleteReport(report.id)
           setConfirmOpen(false)
           setToast(true)
-          setTimeout(() => setToast(false), 1600)
+          setTimeout(() => {
+            setToast(false)
+            router.push('/reports')
+          }, 1000)
         }}
       />
       <Toast message="Report deleted" open={toast} />

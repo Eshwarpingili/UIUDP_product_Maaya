@@ -24,6 +24,7 @@ type AppState = {
   addReport: (report: ReportItem) => void
   addAppointment: (appointment: Appointment) => void
   deleteReport: (id: string) => void
+  reset: () => void
 }
 
 const today = new Date()
@@ -57,5 +58,13 @@ export const useAppStore = create<AppState>((set) => ({
   addAppointment: (appointment) =>
     set((state) => ({ appointments: [appointment, ...state.appointments] })),
   deleteReport: (id) =>
-    set((state) => ({ reports: state.reports.filter((report) => report.id !== id) }))
+    set((state) => ({ reports: state.reports.filter((report) => report.id !== id) })),
+  reset: () => set({
+    userRole: "mother",
+    pregnancyData: initialPregnancy,
+    reports: mockReports,
+    healthData: mockHealthData,
+    appointments: mockAppointments,
+    alerts: mockAlerts
+  })
 }))

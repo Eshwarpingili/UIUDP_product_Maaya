@@ -35,20 +35,42 @@ export default function AppointmentPage() {
     (date ? format(date, "dd MMM yyyy") : "Select date"),
   [date])
 
+  const steps = ["Hospital", "Doctor", "Date", "Confirm"]
+  const currentStepIndex = 2 // Since we display everything in one form prior to Confirm, let's treat the progress bar contextually
+
   return (
     <div className="space-y-6 fade-slide">
-      <Card title="Book appointment" subtitle="Select hospital, doctor, date, and time.">
-        <div className="mb-4">
-          <div className="flex items-center gap-2 text-xs text-black/60">
-            <span className="h-2 w-2 rounded-full bg-highlight" /> Hospital
-            <span className="h-2 w-2 rounded-full bg-black/20" /> Doctor
-            <span className="h-2 w-2 rounded-full bg-black/20" /> Date
-            <span className="h-2 w-2 rounded-full bg-black/20" /> Confirm
-          </div>
-          <div className="mt-2 h-2 rounded-full bg-black/5">
-            <div className="h-2 w-1/2 rounded-full bg-gradient-to-r from-highlight to-accent-200" />
-          </div>
+      <div className="bg-white p-5 rounded-2xl shadow-card">
+        <div className="flex justify-between items-center relative mb-2">
+          {/* Progress Path */}
+          <div className="absolute left-0 top-1/2 -translate-y-1/2 w-full h-[2px] bg-black/5 z-0" />
+          <div 
+            className="absolute left-0 top-1/2 -translate-y-1/2 h-[2px] bg-highlight z-0 transition-all" 
+            style={{ width: `${(currentStepIndex / (steps.length - 1)) * 100}%` }}
+          />
+          
+          {steps.map((step, idx) => {
+            const isCompleted = idx < currentStepIndex
+            const isCurrent = idx === currentStepIndex
+            return (
+              <div key={step} className="relative z-10 flex flex-col items-center gap-1.5">
+                <div className={`w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold ${
+                  isCompleted ? "bg-highlight text-white" : 
+                  isCurrent ? "bg-white border-2 border-highlight text-highlight" : 
+                  "bg-black/5 text-black/40"
+                }`}>
+                  {idx + 1}
+                </div>
+                <span className={`text-[10px] font-semibold uppercase tracking-wider ${isCurrent || isCompleted ? "text-highlight" : "text-black/40"}`}>
+                  {step}
+                </span>
+              </div>
+            )
+          })}
         </div>
+      </div>
+
+      <Card title="Book appointment" subtitle="Select hospital, doctor, date, and time.">
         <div className="space-y-4">
           <Dropdown label="Hospital" options={hospitalOptions} value={hospital} onChange={setHospital} />
           <Dropdown label="Doctor" options={doctorOptions} value={doctor} onChange={setDoctor} />
