@@ -94,7 +94,7 @@ export default function AppointmentPage() {
               {timeSlots.map((time) => (
                 <Button
                   key={time}
-                  variant={slot === time ? "primary" : "outline"}
+                  variant={slot === time ? "default" : "outline"}
                   onClick={() => setSlot(time)}
                 >
                   {time}

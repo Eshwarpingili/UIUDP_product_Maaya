@@ -20,7 +20,7 @@ export default function UploadReport() {
 
   const startCamera = async () => {
     try {
-      const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
+      const stream = await navigator.mediaDevices.getUserMedia({ video: true })
       if (videoRef.current) {
         videoRef.current.srcObject = stream
         setIsCameraActive(true)
@@ -172,6 +172,7 @@ export default function UploadReport() {
                   lifestyle: ["Rest after upload"],
                   images: capturedImage ? [capturedImage] : ["/mock/report-1.svg"]
                 })
+                // Simulate toast notification before redirect
                 router.push("/reports")
               }}
             >

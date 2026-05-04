@@ -94,7 +94,7 @@ export function CalendarModal({
           >
             Tomorrow
           </Button>
-          <Button onClick={() => onOpenChange(false)} variant="primary">
+          <Button onClick={() => onOpenChange(false)} variant="default">
             Done
           </Button>
         </div>
