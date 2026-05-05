@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation"
 import { useAppStore } from "@/store/useAppStore"
 import { ConfirmDialog } from "@/components/ConfirmDialog"
 import { Toast } from "@/components/Toast"
+import { ConnectPartnerModal } from "@/components/ConnectPartnerModal"
 
 export default function ProfilePage() {
   const router = useRouter()
@@ -19,6 +20,7 @@ export default function ProfilePage() {
   const [sharing, setSharing] = useState(true)
   const [showConfirm, setShowConfirm] = useState(false)
   const [toast, setToast] = useState(false)
+  const [showConnectPartner, setShowConnectPartner] = useState(false)
 
   const handleLogout = () => {
     resetApp()
@@ -43,8 +45,6 @@ export default function ProfilePage() {
         </button>
         <h1 className="text-xl font-bold text-text">Profile</h1>
       </div>
-
-      <img src="/images/Profile-avatar.png" alt="Profile" className="w-full rounded-xl object-cover mb-4" />
 
       {/* Profile Header Block */}
       <div className="flex flex-col items-center justify-center py-6 text-center relative overflow-hidden rounded-2xl bg-white shadow-card card-gradient">
@@ -105,7 +105,7 @@ export default function ProfilePage() {
       </Card>
       <Card title="Account actions" subtitle="Manage account safely.">
         <div className="space-y-3">
-          <button className="pressable w-full flex items-center justify-between p-3 rounded-2xl bg-black/5 hover:bg-black/10 transition-colors">
+          <button onClick={() => setShowConnectPartner(true)} className="pressable w-full flex items-center justify-between p-3 rounded-2xl bg-black/5 hover:bg-black/10 transition-colors">
             <div className="flex items-center gap-3 text-sm font-semibold text-text">
               <span className="flex w-8 h-8 rounded-full bg-white items-center justify-center text-highlight shadow-sm">
                 <Link2 size={16} />
@@ -146,6 +146,7 @@ export default function ProfilePage() {
         onConfirm={handleDeleteAccount}
       />
       <Toast message="Account deleted" open={toast} />
+      <ConnectPartnerModal open={showConnectPartner} onOpenChange={setShowConnectPartner} />
     </div>
   )
 }

@@ -27,7 +27,7 @@ export function Dropdown({ label, options, value, onChange, className }: Dropdow
       <button
         type="button"
         onClick={() => setOpen((prev) => !prev)}
-        className="pressable flex w-full min-h-[48px] items-center justify-between rounded-2xl border border-black/10 bg-white/90 px-4 py-3 text-left text-sm text-text shadow-soft"
+        className="pressable flex w-full h-14 items-center justify-between rounded-xl border border-slate-200 bg-white px-4 text-left text-lg text-text shadow-none"
       >
         <span>{current?.label ?? "Select"}</span>
         <ChevronDown size={16} />

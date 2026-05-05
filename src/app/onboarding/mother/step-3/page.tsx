@@ -1,9 +1,8 @@
 "use client"
 
 import { useRouter } from "next/navigation"
-import { Card } from "@/components/Card"
+import { OnboardingStep } from "@/components/OnboardingStep"
 import { Dropdown } from "@/components/Dropdown"
-import { Button } from "@/components/ui/button"
 import { useAppStore } from "@/store/useAppStore"
 
 const options = [
@@ -17,22 +16,20 @@ export default function MotherStep3() {
   const { pregnancyData, updatePregnancyData } = useAppStore()
 
   return (
-    <Card title="Pregnancy type" subtitle="Choose the best description.">
+    <OnboardingStep
+      title="Pregnancy type"
+      subtitle="Choose the best description."
+      onBack={() => router.back()}
+      onNext={() => router.push("/onboarding/mother/step-4")}
+      isNextSubmit={false}
+    >
       <div className="space-y-4">
         <Dropdown
           options={options}
           value={pregnancyData.pregnancyType}
           onChange={(value) => updatePregnancyData({ pregnancyType: value })}
         />
-        <div className="flex justify-between">
-          <Button variant="ghost" onClick={() => router.back()}>
-            Back
-          </Button>
-          <Button onClick={() => router.push("/onboarding/mother/step-4")}>
-            Next
-          </Button>
-        </div>
       </div>
-    </Card>
+    </OnboardingStep>
   )
 }

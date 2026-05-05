@@ -46,9 +46,9 @@ export function ReportCard({ id, title, date, summary, location, status, thumbna
 
   return (
     <>
-      <Link href={`/reports/${id}`}>
-        <Card className="relative hover:bg-black/5 transition-colors">
-          <div className="flex gap-4">
+      <Link href={`/reports/${id}`} className="block w-full min-w-0 max-w-full">
+        <Card className="relative hover:bg-black/5 transition-colors min-w-0 max-w-full">
+          <div className="flex gap-4 min-w-0">
             <div className="h-16 w-16 overflow-hidden rounded-xl bg-black/5 shrink-0">
               <img
                 src={thumbnail ?? "/mock/report-1.svg"}
@@ -56,9 +56,9 @@ export function ReportCard({ id, title, date, summary, location, status, thumbna
                 className="h-full w-full object-cover"
               />
             </div>
-            <div className="flex-1 pr-6 relative">
+            <div className="flex-1 min-w-0 pr-6 relative">
               <div className="flex items-start justify-between gap-2">
-                <div className="flex-1 truncate pr-2">
+                <div className="flex-1 min-w-0 pr-2">
                   <div className="text-sm font-semibold text-text truncate">{title}</div>
                   <div className="text-xs text-black/60 truncate">
                     {format(new Date(date), "dd MMM yyyy")} · {location}

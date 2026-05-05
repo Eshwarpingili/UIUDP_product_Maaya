@@ -2,9 +2,8 @@
 
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
-import { Card } from "@/components/Card"
+import { OnboardingStep } from "@/components/OnboardingStep"
 import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
 
 type FormValues = {
   name: string
@@ -20,14 +19,15 @@ export default function SupportStep1() {
   }
 
   return (
-    <Card title="Support account" subtitle="Create your support profile.">
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-        <Input placeholder="Full name" {...register("name")} />
-        <Input type="email" placeholder="Email" {...register("email")} />
-        <div className="flex justify-end">
-          <Button type="submit">Next</Button>
-        </div>
+    <OnboardingStep
+      title="Support account"
+      subtitle="Create your support profile."
+      formId="support-step1-form"
+    >
+      <form id="support-step1-form" onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        <Input placeholder="Full name" {...register("name")} className="h-12 text-base" />
+        <Input type="email" placeholder="Email" {...register("email")} className="h-12 text-base" />
       </form>
-    </Card>
+    </OnboardingStep>
   )
 }

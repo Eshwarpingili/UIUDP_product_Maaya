@@ -35,7 +35,7 @@ export default function ReportsPage() {
           <Button variant="secondary">Previous reports</Button>
         </Link>
       </div>
-      <div className="grid gap-4">
+      <div className="grid gap-4 max-w-full">
         {reports.slice(0, 2).map((report) => (
           <ReportCard key={report.id} {...report} thumbnail={report.images[0]} />
         ))}

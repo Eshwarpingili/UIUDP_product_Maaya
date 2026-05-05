@@ -17,7 +17,7 @@ export function AppShell({ children }: AppShellProps) {
   const pathname = usePathname()
   
   const isHeroScreen = pathname === "/"
-  const isAuthOrOnboarding = isHeroScreen || pathname.startsWith("/onboarding")
+  const isAuthOrOnboarding = isHeroScreen || pathname.startsWith("/onboarding") || pathname.startsWith("/role")
 
   if (isHeroScreen) {
     return (
@@ -28,12 +28,12 @@ export function AppShell({ children }: AppShellProps) {
   }
 
   return (
-    <div className="page-container flex flex-col bg-[#f4f4f5] min-h-[100dvh]">
+    <div className="page-container flex flex-col bg-[#f4f4f5] h-[100dvh]">
       <div className="app-blob one" />
       <div className="app-blob two" />
       {!isAuthOrOnboarding && <TopBar onSOS={() => setSOSOpen(true)} />}
       {!isAuthOrOnboarding && <SOSModal />}
-      <main className="page-content flex-1 overflow-y-auto relative z-10 pt-4 pb-44 w-full max-w-sm mx-auto px-4">
+      <main className={`page-content flex-1 overflow-y-auto relative z-10 w-full max-w-sm mx-auto px-4 ${isAuthOrOnboarding ? 'pt-8 pb-8 flex flex-col' : 'pt-4 pb-44'}`}>
         {children}
       </main>
       {!isAuthOrOnboarding && <Chatbot />}

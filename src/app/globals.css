@@ -13,15 +13,14 @@ body {
 }
 
 .page-container {
-  min-height: 100vh;
+  height: 100dvh;
   position: relative;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 .page-content {
   margin: 0 auto;
   max-width: 24rem;
-  padding: 1rem;
 }
 
 .section-title {
@@ -83,10 +82,7 @@ body {
 }
 
 .bottom-sheet {
-  left: 50%;
-  top: auto;
-  bottom: 0;
-  transform: translate(-50%, 0);
+  margin-top: auto;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
   border-top-left-radius: 1rem;
@@ -130,22 +126,22 @@ body {
 @keyframes popIn {
   from {
     opacity: 0;
-    transform: translate(-50%, -48%) scale(0.98);
+    transform: scale(0.98);
   }
   to {
     opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
+    transform: scale(1);
   }
 }
 
 @keyframes sheetUp {
   from {
     opacity: 0;
-    transform: translate(-50%, 16px);
+    transform: translateY(16px);
   }
   to {
     opacity: 1;
-    transform: translate(-50%, 0);
+    transform: translateY(0);
   }
 }
 
@@ -174,4 +170,8 @@ body {
 }
 .scroll-snap {
   scroll-snap-type: x mandatory;
+}
+
+body.dialog-open .page-content {
+  overflow-y: hidden !important;
 }

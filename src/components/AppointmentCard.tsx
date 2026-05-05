@@ -14,16 +14,16 @@ type AppointmentCardProps = {
 
 export function AppointmentCard({ doctor, hospital, date, time, status }: AppointmentCardProps) {
   return (
-    <Card>
-      <div className="flex items-start justify-between">
-        <div>
-          <div className="flex items-center gap-2 text-sm font-semibold text-text">
-            <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-black/5">
+    <Card className="min-w-0 max-w-full">
+      <div className="flex items-start justify-between min-w-0">
+        <div className="min-w-0 pr-2">
+          <div className="flex items-center gap-2 text-sm font-semibold text-text truncate">
+            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-black/5">
               <Stethoscope size={16} />
             </span>
-            {doctor}
+            <span className="truncate">{doctor}</span>
           </div>
-          <div className="text-xs text-black/60">{hospital}</div>
+          <div className="text-xs text-black/60 truncate mt-1">{hospital}</div>
         </div>
       </div>
       <div className="mt-3 flex items-center gap-2 text-sm text-black/70">

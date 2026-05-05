@@ -2,9 +2,8 @@
 
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
-import { Card } from "@/components/Card"
+import { OnboardingStep } from "@/components/OnboardingStep"
 import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
 import { Switch } from "@/components/ui/switch"
 import { useAppStore } from "@/store/useAppStore"
 
@@ -37,36 +36,38 @@ export default function MotherStep5() {
   }
 
   return (
-    <Card title="Invite support" subtitle="Share your progress with a partner or caregiver.">
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-        <Input placeholder="Invite code" {...register("invite")} />
-        <div className="flex items-center justify-between rounded-xl bg-black/5 p-3">
+    <OnboardingStep
+      title="Invite support"
+      subtitle="Share your progress with a partner or caregiver."
+      formId="step5-form"
+      onBack={() => router.back()}
+      nextLabel="Finish"
+    >
+      <form id="step5-form" onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+        <Input placeholder="Invite code" {...register("invite")} className="h-14 text-lg px-4 rounded-xl bg-white border-slate-200 mb-8" />
+        <div className="flex items-center justify-between rounded-2xl bg-white p-5 shadow-sm border border-slate-100">
           <div>
-            <div className="text-sm font-medium">Share reports</div>
-            <div className="text-xs text-black/60">Allow support to view reports.</div>
+            <div className="text-lg font-medium text-slate-900">Share reports</div>
+            <div className="text-sm text-slate-500 mt-1">Allow support to view reports.</div>
           </div>
           <Switch
             checked={shareReports}
             onCheckedChange={(value) => setValue("shareReports", value)}
+            className="scale-110"
           />
         </div>
-        <div className="flex items-center justify-between rounded-xl bg-black/5 p-3">
+        <div className="flex items-center justify-between rounded-2xl bg-white p-5 shadow-sm border border-slate-100">
           <div>
-            <div className="text-sm font-medium">Share appointments</div>
-            <div className="text-xs text-black/60">Allow support to view appointments.</div>
+            <div className="text-lg font-medium text-slate-900">Share appointments</div>
+            <div className="text-sm text-slate-500 mt-1">Allow support to view appointments.</div>
           </div>
           <Switch
             checked={shareAppointments}
             onCheckedChange={(value) => setValue("shareAppointments", value)}
+            className="scale-110"
           />
         </div>
-        <div className="flex justify-between">
-          <Button variant="ghost" type="button" onClick={() => router.back()}>
-            Back
-          </Button>
-          <Button type="submit">Finish</Button>
-        </div>
       </form>
-    </Card>
+    </OnboardingStep>
   )
 }

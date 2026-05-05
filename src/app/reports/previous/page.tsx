@@ -42,9 +42,9 @@ export default function PreviousReports() {
         </div>
         <Dropdown options={filterOptions} value={filter} onChange={setFilter} />
       </div>
-      <div className="grid gap-4">
+      <div className="grid gap-4 max-w-full">
         {filtered.map((report) => (
-          <div key={report.id} className="relative">
+          <div key={report.id} className="relative min-w-0 max-w-full">
             <ReportCard {...report} thumbnail={report.images[0]} />
             <button
               type="button"

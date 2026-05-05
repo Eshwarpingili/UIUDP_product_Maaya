@@ -2,9 +2,8 @@
 
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
-import { Card } from "@/components/Card"
+import { OnboardingStep } from "@/components/OnboardingStep"
 import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
 
 type FormValues = {
   inviteCode: string
@@ -20,17 +19,16 @@ export default function SupportStep2() {
   }
 
   return (
-    <Card title="Connect to mother" subtitle="Enter invite code and relationship.">
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-        <Input placeholder="Invite code" {...register("inviteCode")} />
-        <Input placeholder="Relationship (partner, parent)" {...register("relationship")} />
-        <div className="flex justify-between">
-          <Button variant="ghost" type="button" onClick={() => router.back()}>
-            Back
-          </Button>
-          <Button type="submit">Next</Button>
-        </div>
+    <OnboardingStep
+      title="Connect to mother"
+      subtitle="Enter invite code and relationship."
+      formId="support-step2-form"
+      onBack={() => router.back()}
+    >
+      <form id="support-step2-form" onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        <Input placeholder="Invite code" {...register("inviteCode")} className="h-12 text-base" />
+        <Input placeholder="Relationship (partner, parent)" {...register("relationship")} className="h-12 text-base" />
       </form>
-    </Card>
+    </OnboardingStep>
   )
 }

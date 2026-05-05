@@ -2,9 +2,8 @@
 
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
-import { Card } from "@/components/Card"
+import { OnboardingStep } from "@/components/OnboardingStep"
 import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
 import { useAppStore } from "@/store/useAppStore"
 
 type FormValues = {
@@ -28,14 +27,15 @@ export default function MotherStep1() {
   }
 
   return (
-    <Card title="About you" subtitle="Tell us your name and age.">
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-        <Input placeholder="Full name" {...register("name")} />
-        <Input type="number" placeholder="Age" {...register("age", { valueAsNumber: true })} />
-        <div className="flex justify-end">
-          <Button type="submit">Next</Button>
-        </div>
+    <OnboardingStep 
+      title="About you" 
+      subtitle="Tell us your name and age."
+      formId="step1-form"
+    >
+      <form id="step1-form" onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+        <Input placeholder="Full name" {...register("name")} className="h-14 text-lg px-4 rounded-xl bg-white border-slate-200" />
+        <Input type="number" placeholder="Age" {...register("age", { valueAsNumber: true })} className="h-14 text-lg px-4 rounded-xl bg-white border-slate-200" />
       </form>
-    </Card>
+    </OnboardingStep>
   )
 }

@@ -3,9 +3,8 @@
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
 import { format, parseISO } from "date-fns"
-import { Card } from "@/components/Card"
+import { OnboardingStep } from "@/components/OnboardingStep"
 import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
 import { useAppStore } from "@/store/useAppStore"
 
 type FormValues = {
@@ -27,16 +26,15 @@ export default function MotherStep2() {
   }
 
   return (
-    <Card title="Due date" subtitle="When is your expected due date?">
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-        <Input type="date" {...register("dueDate")} />
-        <div className="flex justify-between">
-          <Button variant="ghost" type="button" onClick={() => router.back()}>
-            Back
-          </Button>
-          <Button type="submit">Next</Button>
-        </div>
+    <OnboardingStep
+      title="Due date"
+      subtitle="When is your expected due date?"
+      formId="step2-form"
+      onBack={() => router.back()}
+    >
+      <form id="step2-form" onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+        <Input type="date" {...register("dueDate")} className="h-14 text-lg px-4 rounded-xl bg-white border-slate-200" />
       </form>
-    </Card>
+    </OnboardingStep>
   )
 }

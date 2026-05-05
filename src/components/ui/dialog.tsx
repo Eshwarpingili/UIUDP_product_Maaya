@@ -1,6 +1,7 @@
 "use client"
 
-import type { ReactNode } from "react"
+import { useEffect, useState, type ReactNode } from "react"
+import { createPortal } from "react-dom"
 import { cn } from "@/lib/utils"
 
 
@@ -11,16 +12,36 @@ type DialogProps = {
 }
 
 export function Dialog({ open, onOpenChange, children }: DialogProps) {
-  return (
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  useEffect(() => {
+    if (open) {
+      document.body.classList.add("dialog-open")
+    } else {
+      document.body.classList.remove("dialog-open")
+    }
+    return () => {
+      document.body.classList.remove("dialog-open")
+    }
+  }, [open])
+
+  if (!mounted) return null
+
+  return createPortal(
     <div data-open={open}>
       {open && (
         <div
-          className="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm"
+          className="fixed inset-0 z-[100] bg-black/40 backdrop-blur-sm"
           onClick={() => onOpenChange(false)}
         />
       )}
       {children}
-    </div>
+    </div>,
+    document.body
   )
 }
 
@@ -33,13 +54,15 @@ type DialogContentProps = {
 export function DialogContent({ open, className, children }: DialogContentProps) {
   if (!open) return null
   return (
-    <div
-      className={cn(
-        "dialog-content fixed z-50 bg-white w-[90%] max-w-sm mx-auto left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-2xl p-4 max-h-[80vh] overflow-y-auto overflow-x-hidden shadow-soft",
-        className
-      )}
-    >
-      {children}
+    <div className={cn("fixed inset-0 z-[101] flex p-4 pointer-events-none", className?.includes("bottom-sheet") ? "items-end p-0" : "items-center justify-center")}>
+      <div
+        className={cn(
+          "dialog-content bg-white w-full max-w-sm rounded-2xl p-4 max-h-[80vh] overflow-y-auto overflow-x-hidden shadow-soft pointer-events-auto relative",
+          className
+        )}
+      >
+        {children}
+      </div>
     </div>
   )
 }
